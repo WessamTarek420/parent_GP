@@ -1,0 +1,11 @@
+const kchildName='chilName';
+const kfatherName='fatherName';
+const kmotherName='motherName';
+const kschoolName='schoolName';
+const kchildLocation='childLocation';
+const kphone='phone';
+const kage='age';
+const kbirthday='birthday';
+const kemail='email';
+const kpassword='password';
+const kchildInfo='child';

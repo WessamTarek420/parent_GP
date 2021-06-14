@@ -55,6 +55,13 @@ class EditChild extends StatelessWidget {
                  SizedBox(
               height: height * .02,
             ),
+             Customadd(
+                onclick: (value) {},
+                hint: 'enter phone',
+                icon: Icons.mobile_friendly),
+                SizedBox(
+              height: height * .02,
+            ),
             Customadd(
                 onclick: (value) {},
                 hint: 'enter your location',
