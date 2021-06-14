@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parent_gp/Custom/CustomTextField.dart';
 import 'package:parent_gp/screens/SignUp.dart';
+import 'package:parent_gp/screens/adminHome.dart';
 import 'package:parent_gp/service/auth.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -76,6 +77,8 @@ class LoginScreen extends StatelessWidget {
                               try {
                                 final authresult =
                                     await _auth.signIn(_email, _password);
+                                     Navigator.pushNamed(context, AdminHome.id);
+                                    
                               } catch (e) {
                                 Scaffold.of(context).showSnackBar(SnackBar(
                                   content: Text(e.toString()),
