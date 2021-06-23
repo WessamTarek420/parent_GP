@@ -19,4 +19,17 @@ class Store {
       
     });
   }
+  Stream<QuerySnapshot> loadProducts(){
+    return _firestore.collection(kchildInfo).snapshots();
+  }
+ 
+deleteChild(documentId)
+  {
+    _firestore.collection(kchildInfo).document(documentId).delete();
+  }
+  editChild(data,documentId)
+  {
+    _firestore.collection(kchildInfo).document(documentId).update(data);
+  }
+  
 }

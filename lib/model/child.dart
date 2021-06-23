@@ -1,5 +1,6 @@
 class Child {
   String childName,
+  cId,
       fatherName,
       motherName,
       schoolName,
@@ -10,7 +11,8 @@ class Child {
       email,
       password;
   Child(
-      {this.age,
+      {this.cId,
+        this.age,
       this.birthday,
       this.childName,
       this.childLocation,
