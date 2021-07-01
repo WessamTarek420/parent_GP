@@ -1,18 +1,20 @@
 class Child {
   String childName,
-  cId,
+      cId,
       fatherName,
       motherName,
       schoolName,
       childLocation,
+      image,
       phone,
-    age,
+      age,
       birthday,
       email,
       password;
   Child(
       {this.cId,
-        this.age,
+      this.image,
+      this.age,
       this.birthday,
       this.childName,
       this.childLocation,

@@ -19,7 +19,8 @@ class AddChild extends StatelessWidget {
       age,
       birthday,
       email,
-      password;
+      password,
+      image;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -47,6 +48,15 @@ class AddChild extends StatelessWidget {
                 },
                 hint: 'enter child name',
                 icon: Icons.person),
+            SizedBox(
+              height: height * .02,
+            ),
+            Customadd(
+                onclick: (value) {
+                image = value;
+                },
+                hint: 'enter image',
+                icon: Icons.image),
             SizedBox(
               height: height * .02,
             ),
@@ -154,7 +164,8 @@ class AddChild extends StatelessWidget {
                                   age: age,
                                   birthday: birthday,
                                   email: email,
-                                  password: password));
+                                  password: password,
+                                  image: image));
                             }
                           } catch (e) {
                             Scaffold.of(context).showSnackBar(SnackBar(

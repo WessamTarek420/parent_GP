@@ -15,6 +15,7 @@ class Store {
       kphone: child.phone,
       kpassword: child.password,
       kemail: child.email,
+      kimage:child.image,
     });
   }
 
