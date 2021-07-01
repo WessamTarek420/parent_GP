@@ -1,165 +1,52 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:parent_gp/Custom/Customadd.dart';
+import 'package:parent_gp/const.dart';
 import 'package:parent_gp/model/child.dart';
-import 'package:parent_gp/service/auth.dart';
 import 'package:parent_gp/service/store.dart';
 
-class EditChild extends StatelessWidget {
-  final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
+class EditChild extends StatefulWidget {
   static String id = 'EditChild';
-  final _auth = Auth();
-   final _store = Store();
-   String childName,
-      fatherName,
-      motherName,
-      schoolName,
-      childLocation,
-      phone,
-      age,
-      birthday,
-      email,
-      password;
 
   @override
+  _EditChildState createState() => _EditChildState();
+}
 
+class _EditChildState extends State<EditChild> {
+  final _store = Store();
+
+  @override
   Widget build(BuildContext context) {
-    Child child=ModalRoute.of(context).settings.arguments;
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        backgroundColor: Colors.teal[50],
-        body: Form(
-          key: globalKey,
-          child: ListView(children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 50),
-              child: SizedBox(
-                height: 90,
-                child: Image(
-                  image: AssetImage('images/3.png'),
-                  // fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: height * .04,
-            ),
-            Customadd(
-                onclick: (value) {
-                  childName = value;
-                },
-                hint: 'enter child name',
-                icon: Icons.person),
-            SizedBox(
-              height: height * .02,
-            ),
-            Customadd(
-                onclick: (value) { fatherName = value;},
-                hint: 'enter father name',
-                icon: Icons.face),
-            SizedBox(
-              height: height * .02,
-            ),
-            Customadd(
-                onclick: (value) { motherName = value;},
-                hint: 'enter mother name',
-                icon: Icons.face_outlined),
-                 SizedBox(
-              height: height * .02,
-            ),
-            Customadd(
-                onclick: (value) { schoolName = value;},
-                hint: 'enter name of school',
-                icon: Icons.location_city),
-                 SizedBox(
-              height: height * .02,
-            ),
-             Customadd(
-                onclick: (value) {phone = value;},
-                hint: 'enter phone',
-                icon: Icons.mobile_friendly),
-                SizedBox(
-              height: height * .02,
-            ),
-            Customadd(
-                onclick: (value) {childLocation = value;},
-                hint: 'enter your location',
-                icon: Icons.location_history),
-                 
-                 SizedBox(
-              height: height * .02,
-            ),
-            Customadd(
-                onclick: (value) { age = value;},
-                hint: 'enter age of child',
-                icon: Icons.child_care),
-                SizedBox(
-              height: height * .02,
-            ),
-             Customadd(
-                onclick: (value) { birthday = value;},
-                hint: 'enter data of birth',
-                icon: Icons.date_range_outlined),
-                SizedBox(
-              height: height * .02,
-            ),
-            Customadd(
-                onclick: (value) { email = value;},
-                hint: 'enter email of child',
-                icon: Icons.email), SizedBox(
-              height: height * .02,
-            ),
-            Customadd(
-                onclick: (value) { password = value;},
-                hint: 'enter password of child',
-                icon: Icons.lock),
-            SizedBox(
-              height: height * .09,
-            ),
-            Container(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30),
-                child: Builder(
-                   builder: (context) => FlatButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        onPressed: () async {
-                          try {
-                            if (globalKey.currentState.validate()) {
-                              globalKey.currentState.save();
-                              
-                              _store.editChild(Child(
-                                  childName: childName,
-                                  fatherName: fatherName,
-                                  motherName: motherName,
-                                  schoolName: schoolName,
-                                  childLocation: childLocation,
-                                  phone: phone,
-                                  age: age,
-                                  birthday: birthday,
-                                  email: email,
-                                  password: password),child.cId);
-                            }
-                          } catch (e) {
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text(e.toString()),
-                            ));
-                          }
-                        },
-                        color: Colors.teal[300],
-                        child: Text(
-                          'ADD Child',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ))),
-                ),
-              ),
-            
-          ]),
-        ));
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _store.loadChildren(),
+        builder: (context, snapShot) {
+          if (snapShot.hasData) {
+            List<Child> children = [];
+            for (var doc in snapShot.data.documents) {
+              var data = doc.data();
+              children.add(Child(
+                cId: doc.documentID,
+                fatherName: data[kfatherName],
+                motherName: data[kmotherName],
+                childName: data[kchildName],
+                schoolName: data[kschoolName],
+                childLocation: data[kchildLocation],
+                phone: data[kphone],
+                age: data[kage],
+                birthday: data[kbirthday],
+              ));
+            }
+            return ListView.builder(
+              itemBuilder: (context, index) => Text(children[index].childName),
+              itemCount: children.length,
+            );
+          } else {
+            return Center(child: Text('loading....'));
+          }
+        },
+      ),
+    );
   }
 }

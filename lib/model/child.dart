@@ -6,7 +6,7 @@ class Child {
       schoolName,
       childLocation,
       phone,
-      age,
+    age,
       birthday,
       email,
       password;
