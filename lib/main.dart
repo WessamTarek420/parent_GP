@@ -7,10 +7,10 @@ import 'package:parent_gp/screens/SignUp.dart';
 import 'package:parent_gp/screens/addChild.dart';
 import 'package:parent_gp/screens/adminHome.dart';
 import 'package:parent_gp/screens/edit.dart';
+import 'package:parent_gp/screens/forgetpassword.dart';
 
 import 'screens/Loginscreen.dart';
 import 'screens/start.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -25,12 +25,13 @@ class MyApp extends StatelessWidget {
       initialRoute: Start.id,
       routes: {
         Start.id: (context) => Start(),
-        LoginScreen.id: (context) => LoginScreen(),
-        SignUpScreen.id: (context) => SignUpScreen(),
-        AdminHome.id: (context) => AdminHome(),
-        AddChild.id: (context) => AddChild(),
-        EditChild.id: (context) => EditChild(),
-        EditPRoduct.id: (context) => EditPRoduct()
+        LoginScreen.id:(context)=>LoginScreen(),
+        SignUpScreen.id:(context)=>SignUpScreen(),
+        AdminHome.id:(context)=>AdminHome(),
+        AddChild.id:(context)=>AddChild(),
+        EditChild.id:(context)=>EditChild(),
+        EditPRoduct.id:(context)=>EditPRoduct(),
+        ForgetPassword.id:(context)=>ForgetPassword()
       },
     );
   }

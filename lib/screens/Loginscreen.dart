@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:parent_gp/Custom/CustomTextField.dart';
 import 'package:parent_gp/screens/SignUp.dart';
 import 'package:parent_gp/screens/adminHome.dart';
+import 'package:parent_gp/screens/forgetpassword.dart';
 import 'package:parent_gp/service/auth.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -119,7 +120,11 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                  Text('Forget password!',style:TextStyle(color:Colors.red) ,)
+                  GestureDetector(child: Text('Forget password!',style:TextStyle(color:Colors.red) ,),
+                  onTap: () {
+                            Navigator.pushNamed(context, ForgetPassword.id);
+                          },
+                  )
                 ],),
                 SizedBox(height: height * .03),
                 Row(
