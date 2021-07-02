@@ -3,6 +3,7 @@ import 'dart:ffi';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
+
 class Auth {
   final _auth = FirebaseAuth.instance;
   Future signUp(String email, String password) async {
@@ -16,6 +17,7 @@ class Auth {
         email: email, password: password);
     return authResult;
   }
+  
   // ignore: deprecated_member_use
 
   // ignore: deprecated_member_use
@@ -26,5 +28,8 @@ class Auth {
   
   Future<Void> signOut() async {
     await _auth.signOut();
+  }
+ Future forgetPassword(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
   }
 }

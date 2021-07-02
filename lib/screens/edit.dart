@@ -21,8 +21,14 @@ class _EditChildState extends State<EditChild> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('children',style: TextStyle(color:Colors.white),), elevation: 0,
-          backgroundColor: Colors.teal[300],),
+      appBar: AppBar(
+        title: Text(
+          'children',
+          style: TextStyle(color: Colors.white),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.teal[300],
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _store.loadChildren(),
         builder: (context, snapShot) {
@@ -31,17 +37,16 @@ class _EditChildState extends State<EditChild> {
             for (var doc in snapShot.data.documents) {
               var data = doc.data();
               children.add(Child(
-                cId: doc.documentID,
-                fatherName: data[kfatherName],
-                motherName: data[kmotherName],
-                childName: data[kchildName],
-                schoolName: data[kschoolName],
-                childLocation: data[kchildLocation],
-                phone: data[kphone],
-                age: data[kage],
-                birthday: data[kbirthday],
-                image: data[kimage]
-              ));
+                  cId: doc.documentID,
+                  fatherName: data[kfatherName],
+                  motherName: data[kmotherName],
+                  childName: data[kchildName],
+                  schoolName: data[kschoolName],
+                  childLocation: data[kchildLocation],
+                  phone: data[kphone],
+                  age: data[kage],
+                  birthday: data[kbirthday],
+                  image: data[kimage]));
             }
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -49,7 +54,7 @@ class _EditChildState extends State<EditChild> {
                 childAspectRatio: .8,
               ),
               itemBuilder: (context, index) => Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: GestureDetector(
                   onTapUp: (details) {
                     double dx = details.globalPosition.dx;
@@ -69,7 +74,8 @@ class _EditChildState extends State<EditChild> {
                           ),
                           MyPopupMenuItem(
                             onClick: () {
-                              Navigator.pushNamed(context, EditPRoduct.id,arguments: children[index]);
+                              Navigator.pushNamed(context, EditPRoduct.id,
+                                  arguments: children[index]);
                             },
                             child: Text('Edite'),
                           )
@@ -98,9 +104,9 @@ class _EditChildState extends State<EditChild> {
                                 children: <Widget>[
                                   Text(
                                     children[index].childName,
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   ),
-                                  
                                 ],
                               ),
                             ),
@@ -112,7 +118,8 @@ class _EditChildState extends State<EditChild> {
                 ),
               ),
               itemCount: children.length,
-            );} else {
+            );
+          } else {
             return Center(child: Text('loading....'));
           }
         },
