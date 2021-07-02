@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parent_gp/Custom/Customadd.dart';
+import 'package:parent_gp/const.dart';
 import 'package:parent_gp/model/child.dart';
 import 'package:parent_gp/service/auth.dart';
 import 'package:parent_gp/service/store.dart';
 
-class AddChild extends StatelessWidget {
+class EditPRoduct extends StatelessWidget {
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  static String id = 'AddChild';
+  static String id = 'EditPRoduct';
   final _store = Store();
   final _auth = Auth();
   String childName,
@@ -23,6 +23,7 @@ class AddChild extends StatelessWidget {
       image;
   @override
   Widget build(BuildContext context) {
+    Child child = ModalRoute.of(context).settings.arguments;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         backgroundColor: Colors.teal[50],
@@ -153,19 +154,20 @@ class AddChild extends StatelessWidget {
                           try {
                             if (globalKey.currentState.validate()) {
                               globalKey.currentState.save();
-                              await _auth.signUp(email, password);
-                              _store.addChild(Child(
-                                  childName: childName,
-                                  fatherName: fatherName,
-                                  motherName: motherName,
-                                  schoolName: schoolName,
-                                  childLocation: childLocation,
-                                  phone: phone,
-                                  age: age,
-                                  birthday: birthday,
-                                  email: email,
-                                  password: password,
-                                  image: image));
+                              _store.editChild(
+                                  Child(
+                                      childName: childName,
+                                      fatherName: fatherName,
+                                      motherName: motherName,
+                                      schoolName: schoolName,
+                                      childLocation: childLocation,
+                                      phone: phone,
+                                      age: age,
+                                      birthday: birthday,
+                                      email: email,
+                                      password: password,
+                                      image: image),
+                                  child.cId);
                             }
                           } catch (e) {
                             Scaffold.of(context).showSnackBar(SnackBar(
@@ -175,7 +177,7 @@ class AddChild extends StatelessWidget {
                         },
                         color: Colors.teal[300],
                         child: Text(
-                          'ADD Child',
+                          'Edit',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
