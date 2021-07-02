@@ -117,6 +117,12 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: height * .05),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                  Text('Forget password!',style:TextStyle(color:Colors.red) ,)
+                ],),
+                SizedBox(height: height * .03),
+                Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text('Dont have an account?'),

@@ -21,6 +21,8 @@ class _EditChildState extends State<EditChild> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('children',style: TextStyle(color:Colors.white),), elevation: 0,
+          backgroundColor: Colors.teal[300],),
       body: StreamBuilder<QuerySnapshot>(
         stream: _store.loadChildren(),
         builder: (context, snapShot) {
