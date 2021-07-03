@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:parent_gp/screens/EDitchild.dart';
 import 'package:parent_gp/screens/Loginscreen.dart';
+import 'package:parent_gp/screens/ViewMyChilds.dart';
 import 'package:parent_gp/screens/addChild.dart';
 import 'package:parent_gp/screens/edit.dart';
 import 'package:parent_gp/screens/userpage.dart';
-import 'package:parent_gp/screens/viewgrade.dart';
+import 'package:parent_gp/screens/ViewChildGrade.dart';
 import 'package:parent_gp/service/auth.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -59,7 +60,10 @@ class NavigationDrawerWidget extends StatelessWidget {
                     text: 'View grade',
                     icon: Icons.grade,
                     onClicked: () {
-                      Navigator.pushNamed(context, ViewGrade.id);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ViewMyChilds()));
                     },
                   ),
                   const SizedBox(height: 24),

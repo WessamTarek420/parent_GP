@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:parent_gp/const.dart';
 import 'package:parent_gp/model/child.dart';
 import 'package:parent_gp/screens/EDitchild.dart';
+import 'package:parent_gp/screens/ViewChildGrade.dart';
 import 'package:parent_gp/screens/pop.dart';
 import 'package:parent_gp/service/store.dart';
 
-class EditChild extends StatefulWidget {
-  static String id = 'EditChild';
+class ViewMyChilds extends StatefulWidget {
+  static String id = 'ViewMyChilds';
 
   @override
-  _EditChildState createState() => _EditChildState();
+  _ViewMyChildsState createState() => _ViewMyChildsState();
 }
 
-class _EditChildState extends State<EditChild> {
+class _ViewMyChildsState extends State<ViewMyChilds> {
   final _store = Store();
 
   @override
@@ -46,6 +47,7 @@ class _EditChildState extends State<EditChild> {
                   phone: data[kphone],
                   age: data[kage],
                   birthday: data[kbirthday],
+                  email: data[kemail],
                   image: data[kimage]));
             }
             return GridView.builder(
@@ -56,30 +58,13 @@ class _EditChildState extends State<EditChild> {
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: GestureDetector(
-                  onTapUp: (details) {
-                    double dx = details.globalPosition.dx;
-                    double dy = details.globalPosition.dy;
-                    double dx2 = MediaQuery.of(context).size.width - dx;
-                    double dy2 = MediaQuery.of(context).size.width - dy;
-                    showMenu(
-                        context: context,
-                        position: RelativeRect.fromLTRB(dx, dy, dx2, dy2),
-                        items: [
-                          MyPopupMenuItem(
-                            onClick: () {
-                              _store.deletChild(children[index].cId);
-                              Navigator.pop(context);
-                            },
-                            child: Text('Delete'),
-                          ),
-                          MyPopupMenuItem(
-                            onClick: () {
-                              Navigator.pushNamed(context, Showchild.id,
-                                  arguments: children[index]);
-                            },
-                            child: Text('Edit'),
-                          )
-                        ]);
+                  onTap: () => {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ViewChildGrade(
+                                children[index].email,
+                                children[index].childName)))
                   },
                   child: Stack(
                     children: <Widget>[
