@@ -6,6 +6,7 @@ import 'package:parent_gp/model/father.dart';
 
 class Store {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   addChild(Child child) {
     _firestore.collection(kchildInfo).doc(child.email).set({
       kchildName: child.childName,
@@ -38,11 +39,10 @@ class Store {
   }
 
   Stream<QuerySnapshot> loadChildGrades(String email) {
-    print("maaail " + email);
-    _firestore
+    return _firestore
         .collection(kchildInfo)
         .doc(email)
-        .collection('grades')
+        .collection("grades")
         .snapshots();
   }
 }

@@ -21,9 +21,10 @@ class _EditChildState extends State<EditChild> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.teal[50],
       appBar: AppBar(
         title: Text(
-          'children',
+          'My children',
           style: TextStyle(color: Colors.white),
         ),
         elevation: 0,

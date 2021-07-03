@@ -22,9 +22,10 @@ class _ViewMyChildsState extends State<ViewMyChilds> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.teal[50],
       appBar: AppBar(
         title: Text(
-          'children',
+          'My children',
           style: TextStyle(color: Colors.white),
         ),
         elevation: 0,
@@ -59,7 +60,7 @@ class _ViewMyChildsState extends State<ViewMyChilds> {
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: GestureDetector(
                   onTap: () => {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => ViewChildGrade(

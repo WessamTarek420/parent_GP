@@ -59,7 +59,7 @@ class AdminHome extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20)),
                 color: Colors.teal[300],
                 onPressed: () {
-                  Navigator.pushReplacement(context,
+                  Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ViewMyChilds()));
                 },
                 child: Text(
