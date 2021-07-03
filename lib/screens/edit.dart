@@ -74,7 +74,7 @@ class _EditChildState extends State<EditChild> {
                           ),
                           MyPopupMenuItem(
                             onClick: () {
-                              Navigator.pushNamed(context, EditPRoduct.id,
+                              Navigator.pushNamed(context, Showchild.id,
                                   arguments: children[index]);
                             },
                             child: Text('Edite'),

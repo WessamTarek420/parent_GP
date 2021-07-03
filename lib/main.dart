@@ -8,6 +8,7 @@ import 'package:parent_gp/screens/addChild.dart';
 import 'package:parent_gp/screens/adminHome.dart';
 import 'package:parent_gp/screens/edit.dart';
 import 'package:parent_gp/screens/forgetpassword.dart';
+import 'package:parent_gp/screens/viewgrade.dart';
 
 import 'screens/Loginscreen.dart';
 import 'screens/start.dart';
@@ -30,8 +31,9 @@ class MyApp extends StatelessWidget {
         AdminHome.id:(context)=>AdminHome(),
         AddChild.id:(context)=>AddChild(),
         EditChild.id:(context)=>EditChild(),
-        EditPRoduct.id:(context)=>EditPRoduct(),
-        ForgetPassword.id:(context)=>ForgetPassword()
+        Showchild.id:(context)=>Showchild(),
+        ForgetPassword.id:(context)=>ForgetPassword(),
+        ViewGrade.id:(context)=>ViewGrade(),
       },
     );
   }

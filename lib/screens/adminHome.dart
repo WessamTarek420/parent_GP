@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:parent_gp/screens/addChild.dart';
 import 'package:parent_gp/screens/edit.dart';
+import 'package:parent_gp/screens/navigator_drawer.dart';
 
 class AdminHome extends StatelessWidget {
   static String id = 'AdminHome';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavigationDrawerWidget(),
         backgroundColor:Colors.teal[50],
         appBar: AppBar(
           backgroundColor:Colors.teal[300],

@@ -5,9 +5,9 @@ import 'package:parent_gp/model/child.dart';
 import 'package:parent_gp/service/auth.dart';
 import 'package:parent_gp/service/store.dart';
 
-class EditPRoduct extends StatelessWidget {
+class Showchild extends StatelessWidget {
   final GlobalKey<FormState> globalKey = GlobalKey<FormState>();
-  static String id = 'EditPRoduct';
+  static String id = 'Showchild';
   final _store = Store();
   final _auth = Auth();
   String childName,
