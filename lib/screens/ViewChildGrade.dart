@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:parent_gp/model/SubjectGrade.dart';
+import 'package:parent_gp/screens/ViewMyChilds.dart';
+import 'package:parent_gp/screens/certificate.dart';
 import 'package:parent_gp/service/store.dart';
 
 class ViewChildGrade extends StatefulWidget {
   final String email;
   final String childName;
-
+  static String id = "ViewChildGrade";
   ViewChildGrade(this.email, this.childName);
 
   @override
@@ -53,30 +55,43 @@ class _ViewChildGradeState extends State<ViewChildGrade> {
                       ],
                     ),
                     height: 60,
-                   // color: Colors.white,
+                    // color: Colors.white,
                     child: Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            grades[index].subject,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.teal[350]),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 8),
-                            child: Text(
-                              ("Grade: " + grades[index].grade.toString()) +
-                                  (grades[index].subject.toLowerCase() ==
-                                          "final exam"
-                                      ? "/50"
-                                      : "/10"),
+                      child: GestureDetector(
+                        onTap: () {
+                          if (grades[index].grade > 30 ||
+                              grades[index].grade == 30) {
+                            Navigator.pushNamed(context, Certificate.id);
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ViewMyChilds()));
+                          }
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              grades[index].subject,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.teal[350]),
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding: EdgeInsets.only(top: 8),
+                              child: Text(
+                                ("Grade: " + grades[index].grade.toString()) +
+                                    (grades[index].subject.toLowerCase() ==
+                                            "final exam"
+                                        ? "/50"
+                                        : "/10"),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

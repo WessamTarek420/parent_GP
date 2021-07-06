@@ -10,7 +10,9 @@ import 'package:parent_gp/screens/edit.dart';
 import 'package:parent_gp/screens/forgetpassword.dart';
 import 'package:parent_gp/screens/ViewChildGrade.dart';
 
+
 import 'screens/Loginscreen.dart';
+import 'screens/certificate.dart';
 import 'screens/start.dart';
 
 void main() async {
@@ -34,6 +36,8 @@ class MyApp extends StatelessWidget {
         EditChild.id: (context) => EditChild(),
         Showchild.id: (context) => Showchild(),
         ForgetPassword.id: (context) => ForgetPassword(),
+        Certificate.id:(context)=>Certificate(),
+        
       },
     );
   }

@@ -7,7 +7,7 @@ class UserPage extends StatelessWidget {
   const UserPage({
     
     @required this.name,
-    @required this.urlImage,
+  @required this.urlImage,
   }) ;
 
   @override
